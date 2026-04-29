@@ -53,6 +53,9 @@ on:
 
 jobs:
   build:
+    # Default GitHub Actions timeout is 6h, which is too short for slow
+    # platforms like riscv64-linux building large packages from source.
+    timeout-minutes: 1440
     strategy:
       fail-fast: false
       matrix:

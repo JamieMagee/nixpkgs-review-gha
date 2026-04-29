@@ -87,6 +87,11 @@ runs:
       shell: bash
       run: sudo mkdir -p /nix/build
 
+    - name: lower mmap_min_addr (riscv64)
+      if: inputs.system == 'riscv64-linux'
+      shell: bash
+      run: sudo sysctl -w vm.mmap_min_addr=4096
+
     - name: post setup-nix
       if: runner.os == 'macOS'
       uses: srz-zumix/post-run-action@v3
